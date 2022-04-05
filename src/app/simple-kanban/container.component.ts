@@ -1,13 +1,14 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
-import { DndService } from "@ng-dnd/core";
-import { spillTarget } from "@ng-dnd/sortable";
-import { ItemTypes } from './item-types';
-import { Card } from './specs';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy} from '@angular/core';
+import {DndService} from "@ng-dnd/core";
+import {spillTarget} from "@ng-dnd/sortable";
+import {ItemTypes} from './item-types';
+import {Card} from './specs';
 
 @Component({
   selector: 'kanban-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContainerComponent implements AfterViewInit, OnDestroy {
 
@@ -25,13 +26,15 @@ export class ContainerComponent implements AfterViewInit, OnDestroy {
   constructor(
     private dnd: DndService,
     private el: ElementRef,
-  ) { }
+  ) {
+  }
 
   ngAfterViewInit() {
     // spill = anywhere in this container component
     // could easily be document.body
     // this.cardSpill.connectDropTarget(this.el.nativeElement);
   }
+
   ngOnDestroy() {
     // it's a regular drop target! don't forget to unsubscribe.
     this.cardSpill.unsubscribe();

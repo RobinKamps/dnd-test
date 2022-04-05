@@ -29,7 +29,7 @@ import { SortableSpecService } from './specs';
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: "", component: ContainerComponent }
-    ])
+    ]),
   ],
   providers: [
     SortableSpecService
